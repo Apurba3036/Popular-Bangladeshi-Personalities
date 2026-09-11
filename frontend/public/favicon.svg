@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1A1A1A" rx="4"/>
+  <circle cx="16" cy="16" r="12" fill="none" stroke="#C5A55A" stroke-width="1.5"/>
+  <circle cx="16" cy="16" r="6" fill="#C5A55A" opacity="0.8"/>
+  <text x="16" y="18" text-anchor="middle" font-family="serif" font-size="6" font-weight="bold" fill="#1A1A1A">BNI</text>
+</svg>
