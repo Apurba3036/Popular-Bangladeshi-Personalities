@@ -65,7 +65,8 @@ export default function PersonCard({ person, categoryName }) {
           <h3 className="card-name-en">{person.nameEnglish}</h3>
           <p className="card-name-bn">{person.nameBangla}</p>
           <p className="card-profession">
-            {(language === 'bn' ? person.professionBangla : person.profession).join(' • ')}
+            {(language === 'bn' ? person.professionBangla : person.profession)?.join(' • ') ||
+              (language === 'bn' ? person.professionBangla : person.profession)}
           </p>
           <p className="card-years">{getYears(person)}</p>
           <p className="card-short-bio">
