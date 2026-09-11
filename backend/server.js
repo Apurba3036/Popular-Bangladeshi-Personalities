@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const { connectToMongoDB, getDatabase } = require('./db');
 
 const app = express();
@@ -8,7 +7,6 @@ const PORT = process.env.PORT || 5000;
 const COLLECTION = process.env.COLLECTION_NAME || 'personalities';
 const MAP_COLLECTION = process.env.MAP_COLLECTION_NAME || 'bangladeshmap';
 
-app.use(cors());
 app.use(express.json());
 
 async function getAllPersonalities() {

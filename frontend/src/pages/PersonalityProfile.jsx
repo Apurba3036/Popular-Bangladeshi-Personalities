@@ -6,6 +6,7 @@ import {
   BookOpen, Award, Link2, Image, Quote
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import { apiUrl } from '../api'
 
 const heritageImages = [
   '/images/heritage/ahsan-monjil.jpg',
@@ -28,7 +29,7 @@ export default function PersonalityProfile() {
   const [portraitError, setPortraitError] = useState(false)
 
   useEffect(() => {
-    fetch(`/api/personalities/${id}`)
+    fetch(apiUrl(`/api/personalities/${id}`))
       .then(r => r.json())
       .then(data => {
         setPerson(data)

@@ -5,6 +5,7 @@ import { ArrowRight, Sparkles, BookOpen, Users, Globe, Award, GraduationCap, Hea
 import { useLanguage } from '../context/LanguageContext'
 import PersonCard from '../components/PersonCard'
 import LazyImage from '../components/LazyImage'
+import { apiUrl } from '../api'
 
 const BangladeshMap = lazy(() => import('../components/BangladeshMap'))
 
@@ -98,8 +99,8 @@ export default function Home() {
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/personalities?featured=true').then(r => r.json()),
-      fetch('/api/categories').then(r => r.json()),
+      fetch(apiUrl('/api/personalities?featured=true')).then(r => r.json()),
+      fetch(apiUrl('/api/categories')).then(r => r.json()),
     ]).then(([persons, cats]) => {
       setFeatured(persons.personalities || [])
       setCategories(cats || [])

@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Search as SearchIcon } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import PersonCard from '../components/PersonCard'
+import { apiUrl } from '../api'
 
 const categoryNames = {
   en: { science: 'Science & Technology', literature: 'Literature & Poetry', arts: 'Arts & Culture', history: 'National History', medicine: 'Medicine & Health', sports: 'Sports & Athletics', education: 'Education & Social Reform' },
@@ -25,7 +26,7 @@ export default function Search() {
 
     const timer = setTimeout(() => {
       setLoading(true)
-      fetch(`/api/personalities?search=${encodeURIComponent(query)}`)
+      fetch(apiUrl(`/api/personalities?search=${encodeURIComponent(query)}`))
         .then(r => r.json())
         .then(data => {
           setResults(data.personalities || [])

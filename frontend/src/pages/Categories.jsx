@@ -6,6 +6,7 @@ import {
   GraduationCap, Heart, Star
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import { apiUrl } from '../api'
 
 const categoryIcons = {
   science: <Sparkles size={28} />,
@@ -26,7 +27,7 @@ export default function Categories() {
   const activeCategory = searchParams.get('cat') || 'all'
 
   useEffect(() => {
-    fetch('/api/categories')
+    fetch(apiUrl('/api/categories'))
       .then(r => r.json())
       .then(data => {
         setCategories(data || [])
@@ -37,8 +38,8 @@ export default function Categories() {
 
   useEffect(() => {
     const url = activeCategory === 'all'
-      ? '/api/personalities'
-      : `/api/personalities?category=${activeCategory}`
+      ? apiUrl('/api/personalities')
+      : apiUrl(`/api/personalities?category=${activeCategory}`)
     fetch(url)
       .then(r => r.json())
       .then(data => setPersonalities(data.personalities || []))

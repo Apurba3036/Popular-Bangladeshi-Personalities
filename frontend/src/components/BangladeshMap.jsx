@@ -5,6 +5,7 @@ import L from 'leaflet'
 import 'leaflet/dist/leaflet.css'
 import { useLanguage } from '../context/LanguageContext'
 import { DISTRICTS } from '../assets/districts'
+import { apiUrl } from '../api'
 
 const LOCATIONS = [
   { id: 'sheikh-mujibur-rahman', nameEn: 'Sheikh Mujibur Rahman', nameBn: 'বঙ্গবন্ধু শেখ মুজিবুর রহমান', role: 'Father of the Nation', lat: 23.253, lng: 89.944 },
@@ -69,7 +70,7 @@ export default function BangladeshMap() {
   const [mapData, setMapData] = useState(null)
 
   useEffect(() => {
-    fetch('/api/map')
+    fetch(apiUrl('/api/map'))
       .then(r => r.json())
       .then(data => setMapData(data))
       .catch(() => setMapData(null))
