@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const { connectToMongoDB, getDatabase } = require('./db');
 
 const app = express();
@@ -7,7 +8,18 @@ const PORT = process.env.PORT || 5000;
 const COLLECTION = process.env.COLLECTION_NAME || 'personalities';
 const MAP_COLLECTION = process.env.MAP_COLLECTION_NAME || 'bangladeshmap';
 
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'https://popular-bangladeshi-personalities-6.vercel.app,https://popular-bangladeshi-personalities.vercel.app,https://popular-bangladeshi-personalities.vercel.app')
+  .split(',')
+  .map(o => o.trim())
+  .filter(Boolean);
+
 app.use(express.json());
+
+if (allowedOrigins.length) {
+  app.use(cors({
+    origin: allowedOrigins,
+  }));
+}
 
 async function getAllPersonalities() {
   const db = getDatabase();
