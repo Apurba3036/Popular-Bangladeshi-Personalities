@@ -100,7 +100,7 @@ cd backend
 npm install
 ```
 
-Create a `.env` file (see `backend/.env.example`):
+Create a `.env` file with your own credentials:
 
 ```env
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/?appName=Cluster0
