@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { apiUrl } from '../api'
+import PersonCard from '../components/PersonCard'
 
 const categoryIcons = {
   science: <Sparkles size={28} />,
