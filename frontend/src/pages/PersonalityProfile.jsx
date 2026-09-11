@@ -154,7 +154,7 @@ export default function PersonalityProfile() {
             <h1 className="profile-name-en">{person.nameEnglish}</h1>
             <p className="profile-name-bn">{person.nameBangla}</p>
             <p className="profile-profession">
-              {language === 'bn' ? person.professionBangla.join(' • ') : person.profession.join(' • ')}
+              {(language === 'bn' ? person.professionBangla : person.profession)?.join(' • ')}
             </p>
             <div className="profile-quote">
               "{language === 'bn' ? person.shortBioBangla : person.shortBioEnglish}"
