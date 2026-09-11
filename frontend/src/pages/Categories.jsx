@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { apiUrl } from '../api'
+import { useSeo } from '../seo'
 import PersonCard from '../components/PersonCard'
 
 const categoryIcons = {
@@ -26,6 +27,13 @@ export default function Categories() {
   const [personalities, setPersonalities] = useState([])
   const [loading, setLoading] = useState(true)
   const activeCategory = searchParams.get('cat') || 'all'
+  const categoryTitle = activeCategory !== 'all' ? (activeCategory[0].toUpperCase() + activeCategory.slice(1)) : 'Browse by Category'
+
+  useSeo({
+    title: categoryTitle,
+    description: 'Browse the most popular personalities of Bangladesh by category — science, literature, arts, history, medicine, sports, and education.',
+    canonicalPath: '/categories',
+  })
 
   useEffect(() => {
     fetch(apiUrl('/api/categories'))

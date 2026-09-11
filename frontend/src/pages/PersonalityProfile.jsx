@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import { apiUrl } from '../api'
+import { useSeo } from '../seo'
 
 const heritageImages = [
   '/images/heritage/ahsan-monjil.jpg',
@@ -41,6 +42,47 @@ export default function PersonalityProfile() {
   useEffect(() => {
     setBioLang(language)
   }, [language])
+
+  useSeo({
+    title: person ? person.nameEnglish : 'Personality Profile',
+    description: person ? `${person.nameEnglish} (${person.nameBangla}) — ${person.category}. ${person.shortBioEnglish || ''}` : 'Learn about renowned personalities of Bangladesh.',
+    image: person?.portrait ? `https://popularbangladeshi.vercel.app${person.portrait}` : undefined,
+    canonicalPath: `/personality/${id}`,
+  })
+
+  useEffect(() => {
+    if (!person) return
+    let script = document.getElementById('person-jsonld')
+    if (!script) {
+      script = document.createElement('script')
+      script.type = 'application/ld+json'
+      script.id = 'person-jsonld'
+      document.head.appendChild(script)
+    }
+    script.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      name: person.nameEnglish,
+      alternateName: person.nameBangla,
+      description: person.shortBioEnglish,
+      url: `https://popularbangladeshi.vercel.app/personality/${id}`,
+      image: person.portrait ? `https://popularbangladeshi.vercel.app${person.portrait}` : undefined,
+      knowsAbout: person.category,
+      birthDate: person.birthDate,
+      deathDate: person.deathDate || undefined,
+      birthPlace: person.birthplace,
+      nationality: {
+        '@type': 'Country',
+        name: 'Bangladesh',
+        sameAs: 'https://en.wikipedia.org/wiki/Bangladesh',
+      },
+      about: {
+        '@type': 'Thing',
+        name: 'Popular Personalities of Bangladesh',
+        url: 'https://popularbangladeshi.vercel.app/',
+      },
+    })
+  }, [person, id])
 
   if (loading) {
     return (

@@ -4,6 +4,7 @@ import { Search as SearchIcon } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
 import PersonCard from '../components/PersonCard'
 import { apiUrl } from '../api'
+import { useSeo } from '../seo'
 
 const categoryNames = {
   en: { science: 'Science & Technology', literature: 'Literature & Poetry', arts: 'Arts & Culture', history: 'National History', medicine: 'Medicine & Health', sports: 'Sports & Athletics', education: 'Education & Social Reform' },
@@ -16,6 +17,12 @@ export default function Search() {
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
   const [searched, setSearched] = useState(false)
+
+  useSeo({
+    title: 'Search Personalities',
+    description: 'Search the archive of popular Bangladesh personalities by name, category, or keyword in English and Bangla.',
+    canonicalPath: '/search',
+  })
 
   useEffect(() => {
     if (query.trim().length < 2) {

@@ -1,9 +1,16 @@
 import { motion } from 'framer-motion'
 import { Globe, BookOpen, Heart, Shield, Users, Award } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import { useSeo } from '../seo'
 
 export default function About() {
   const { t } = useLanguage()
+
+  useSeo({
+    title: 'About the Archive',
+    description: 'Learn about the Popular Personalities of Bangladesh project — an honest, source-based bilingual archive celebrating the nation\'s heroes.',
+    canonicalPath: '/about',
+  })
 
   const values = [
     {

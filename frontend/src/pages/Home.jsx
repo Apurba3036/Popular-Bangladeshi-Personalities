@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles, BookOpen, Users, Globe, Award, GraduationCap, Heart, Star, MapPin, Landmark, PenTool, Microscope } from 'lucide-react'
 import { useLanguage } from '../context/LanguageContext'
+import { useSeo } from '../seo'
 import PersonCard from '../components/PersonCard'
 import LazyImage from '../components/LazyImage'
 import { apiUrl } from '../api'
@@ -89,6 +90,12 @@ export default function Home() {
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [heroBg, setHeroBg] = useState(0)
+
+  useSeo({
+    title: 'Heroes of the Nation',
+    description: 'Discover the most popular and influential personalities of Bangladesh — scientists, poets, artists, freedom fighters, athletes, and leaders who shaped the nation.',
+    canonicalPath: '/',
+  })
 
   useEffect(() => {
     const timer = setInterval(() => {

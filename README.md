@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="frontend/image.png" alt="Popular Personalities of Bangladesh" width="100%" />
+  <img src="frontend/public/image.png" alt="Popular Personalities of Bangladesh" width="100%" />
 </p>
 
 <h1 align="center">🇧🇩 Popular Personalities of Bangladesh</h1>
